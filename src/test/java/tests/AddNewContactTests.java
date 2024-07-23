@@ -27,11 +27,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("3434343"+i)
                 .email("stark"+i+"@gmail.com")
                 .address("NY")
-                .description("Friend")
+                .description("all fields")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
@@ -45,7 +46,7 @@ public class AddNewContactTests extends TestBase {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
 
         Contact contact = Contact.builder()
-                .name("Tony")
+                .name("TonyReq")
                 .lastName("Stark")
                 .phone("3434343"+i)
                 .email("stark"+i+"@gmail.com")
@@ -54,6 +55,8 @@ public class AddNewContactTests extends TestBase {
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
+        app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
@@ -69,11 +72,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("34343436665")
                 .email("stark@gmail.com")
                 .address("NY")
-                .description("Friend")
+                .description("empty name")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
@@ -87,11 +91,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("34343434444")
                 .email("stark@gmail.com")
                 .address("")
-                .description("Friend")
+                .description("empty address")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
 
@@ -105,11 +110,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("34343435555")
                 .email("stark@gmail.com")
                 .address("NY")
-                .description("Friend")
+                .description("empty last name")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
 
@@ -125,11 +131,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("")
                 .email("stark@gmail.com")
                 .address("NY")
-                .description("Friend")
+                .description("wrong phone")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
         Assert.assertTrue(app.getHelperContact().isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
@@ -144,11 +151,12 @@ public class AddNewContactTests extends TestBase {
                 .phone("34343444443")
                 .email("starkgmail.com")
                 .address("NY")
-                .description("Friend")
+                .description("wrong email")
                 .build();
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+//        app.getHelperContact().pause(2000);
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
         Assert.assertTrue(app.getHelperContact().isAlertPresent("Email not valid"));
