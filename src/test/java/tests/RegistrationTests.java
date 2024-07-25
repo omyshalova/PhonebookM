@@ -21,10 +21,14 @@ public class RegistrationTests extends TestBase {
         int i = (int) (System.currentTimeMillis() / 1000) % 3600;
 
         User user = new User().withEmail("don" + i + "@gmail.com").withPassword("Ddon123456$");
+        logger.info("Tests run with data: --->"+user.toString());
 
         app.getHelperUser().openLoginRegistrationForm();
+        logger.info("openRegistrationForm invoked");
         app.getHelperUser().fillLoginRegistrationForm(user);
+        logger.info("fillRegistrationForm invoked");
         app.getHelperUser().submitRegistration();
+        logger.info("submitLogin invoked");
         Assert.assertTrue(app.getHelperUser().isLogged());
         Assert.assertTrue(app.getHelperUser().isNoContactsHereDisplayed());
 
@@ -34,6 +38,7 @@ public class RegistrationTests extends TestBase {
     public void registrationWrongEmail() {
 
         User user = new User().withEmail("dongmail.com").withPassword("Ddon123456$");
+        logger.info("Tests run with data: --->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -45,6 +50,7 @@ public class RegistrationTests extends TestBase {
     public void registrationWrongPassword() {
 
         User user = new User().withEmail("don@gmail.com").withPassword("Ddon123");
+        logger.info("Tests run with data: --->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -56,6 +62,7 @@ public class RegistrationTests extends TestBase {
     public void registrationExistsUser() {
 
         User user = new User().withEmail("mara@gmail.com").withPassword("Mmar123456$");
+        logger.info("Tests run with data: --->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
