@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderContact;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -16,19 +17,9 @@ public class AddNewContactTests extends TestBase {
 
     }
 
-    @Test
-    public void addContactSuccessAllFields() {
+    @Test(dataProvider = "contactSuccess",dataProviderClass = DataProviderContact.class)
+    public void addContactSuccessAllFields(Contact contact) {
 
-        int i = (int) (System.currentTimeMillis() / 1000) % 3600;
-
-        Contact contact = Contact.builder()
-                .name("Tony"+i)
-                .lastName("Stark")
-                .phone("3434343"+i)
-                .email("stark"+i+"@gmail.com")
-                .address("NY")
-                .description("all fields")
-                .build();
         logger.info("Tests run with data: --->" + contact.toString());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
@@ -127,16 +118,9 @@ public class AddNewContactTests extends TestBase {
 
 
 
-    @Test
-    public void addNewContactWrongPhone(){
-        Contact contact = Contact.builder()
-                .name("Tony")
-                .lastName("Stark")
-                .phone("")
-                .email("stark@gmail.com")
-                .address("NY")
-                .description("wrong phone")
-                .build();
+    @Test(dataProvider = "contactWrongPhone",dataProviderClass = DataProviderContact.class)
+    public void addNewContactWrongPhone(Contact contact){
+
         logger.info("Tests run with data: --->" + contact.toString());
 
         app.getHelperContact().openContactForm();
