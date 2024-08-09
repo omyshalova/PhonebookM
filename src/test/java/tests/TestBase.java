@@ -17,19 +17,19 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startLogger(Method m){
         logger.info("Name of method-->"+m.getName());
     }
 
     static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void end(){
         logger.info("=====================================================");
     }
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setUp() {
         app.init();
     }
