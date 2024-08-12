@@ -76,7 +76,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginWrongPassword() {
-        logger.info("Test data ---> email: 'mara@gmail.com' & password: 'Mmar123'");
+        logger.info("Test data ---> email: 'testolga@gmail.com' & password: 'Test1101'");
 
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm("mara@gmail.com", "Mmar123");
